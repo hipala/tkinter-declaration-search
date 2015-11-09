@@ -13,6 +13,7 @@ class App(object):
         self.root = Tk.Tk()
         self.root.title("Declaration Search")
         self.root.geometry("600x400")
+        self.root.bind('<Return>', self.search)
 
         # space to read more comfortable
         self.label = Tk.Label(self.root, text="   ")
@@ -38,7 +39,7 @@ class App(object):
     def openlink(self):
         webbrowser.open_new("{}".format(link))
 
-    def search(self):
+    def search(self, *args):
         keyword = self.var.get()
 
         if len(keyword) == 0:  # if nothing input
