@@ -36,7 +36,7 @@ class App(object):
 
         self.root.mainloop()
 
-    def openlink(self):
+    def openlink(self, event, link):
         webbrowser.open_new("{}".format(link))
 
     def search(self, *args):
@@ -53,11 +53,10 @@ class App(object):
 
                 if re.search(r'{}'.format(trans_keyword), declaration, re.I):
 
-                    Title = Tk.Label(text=item[0])
+                    Title = Tk.Label(text=item[0], foreground="blue")
+                    link = item[1]
                     Title.pack()
-
-                    link = Tk.Label(text=item[1], foreground="blue")
-                    link.pack()
-                    link.bind("<Button-1>", self.openlink)
+                    Title.bind("<Button-1>", lambda event,
+                               arg=link: self.openlink(event, arg))
 
 App()
