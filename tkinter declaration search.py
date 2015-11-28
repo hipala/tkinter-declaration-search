@@ -42,7 +42,7 @@ class App(object):
     def search(self, *args):
         keyword = self.var.get()
 
-        if len(keyword) == 0:  # if nothing input
+        if not keyword:  # if nothing input
             pass
 
         else:
