@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import requests
 from bs4 import BeautifulSoup
 
@@ -9,12 +7,12 @@ head = {
 link = "Page={}"  # add link here
 sleep = time.sleep(2)
 
+dic = {}
+
 
 def store(link):
 
-    page = 0
     for n in change:
-        page += 1
         new_link = link.format(n)
 
         target = requests.get(new_link, headers=head)
@@ -22,19 +20,18 @@ def store(link):
 
         soup = BeautifulSoup(target.text)
 
-        titles = []
         for title in soup.select(".title-sub"):
-            titles.append(title.text)
-
-        times = []
-        for time in soup.select(".title-time"):
-            times.append(time.text)
-
-        results = []
-        for title, time in zip(titles, times):
-            results.append(title + ', ' + time + ', ' + new_link)
-
-        for result in results:
-            print result
+            dic[title.text] = new_link  # dic = {title:link}
 
         sleep
+
+
+store(link)  # execute
+
+#print dic
+
+title = list(dic.keys())  # save titles in key before, turn dic to list
+link = list(dic.values())  # save link in value before, turn dic to list
+final_results = zip(title, link)  # [(title, link), (title, link)...]
+
+#print final_results
