@@ -2,9 +2,10 @@ import re
 import webbrowser
 import Tkinter as Tk
 
-list = [(u"yahoo", "https://tw.yahoo.com/"), (u"google",
+final_results = [(u"yahoo", "https://tw.yahoo.com/"), (u"google",
                                               "http://www.google.com.tw/"), (u"youtube", "https://www.youtube.com/")]
-#list = [(u"中文字", "「中文字的內容」"), (u"中文符號", "「中文符號的內容」"), (u"中文標點", "「中文標點的內容」")]
+
+#final_results = [(u"中文字", "「中文字的內容」"), (u"中文符號", "「中文符號的內容」"), (u"中文標點", "「中文標點的內容」")]
 
 
 class App(object):
@@ -13,7 +14,7 @@ class App(object):
         self.root = Tk.Tk()
         self.root.title("Declaration Search")
         self.root.geometry("600x400")
-        self.root.bind('<Return>', self.search)
+        self.root.bind('<Return>', self.search)  # 按enter執行
 
         # space to read more comfortable
         self.label = Tk.Label(self.root, text="   ")
@@ -48,7 +49,7 @@ class App(object):
         else:
             trans_keyword = keyword.encode('utf-8')
 
-            for item in list:
+            for item in final_results:
                 declaration = item[0].encode('utf-8')
 
                 if re.search(r'{}'.format(trans_keyword), declaration, re.I):
