@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+import time
 import requests
 from bs4 import BeautifulSoup
 
@@ -28,10 +30,10 @@ def store(link):
 
 store(link)  # execute
 
-#print dic
+# print dic
 
 title = list(dic.keys())  # save titles in key before, turn dic to list
 link = list(dic.values())  # save link in value before, turn dic to list
 final_results = zip(title, link)  # [(title, link), (title, link)...]
 
-#print final_results
+# print final_results
